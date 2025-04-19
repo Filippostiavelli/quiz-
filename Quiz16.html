@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz1</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(70deg, #f6d365, #fda085);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .question {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            width: 60%;
+            border: 2px solid #333;
+            border-color: blue;
+        }
+        .question div {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: black;
+      
+        }
+        .answers {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 80%;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+        .option {
+            width: 200px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #333;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, opacity 0.3s;
+            background: #fff;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        .option:hover {
+            background-color: #ffd1a9;
+            transform: scale(1.1);
+        }
+        .correct {
+            border-color: green !important;
+            
+        }
+        .incorrect {
+            border-color: red !important;
+        }
+        .fade {
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body>
+ 
+   
+    <div id="answers"></div>
+
+   <script>
+    const options = [
+        { name: 'FISICA', link: 'QuizFisica.html' },
+        { name: 'CINEMA', link: 'QuizCinema.html' },
+        { name: 'ARTE', link: 'QuizArte.html' },
+        { name: 'SPORT', link: 'QuizSport.html' },
+        { name: 'LINGUE', link: 'QuizLingue.html' },
+        { name: 'FILOSOFIA', link: 'QuizFilosofia.html' },
+        { name: 'TECNOLOGIA', link: 'QuizTecnologia.html' },
+    ];
+
+    const shuffledOptions = options.sort(() => Math.random() - 0.5);
+    const answersContainer = document.getElementById('answers');
+
+    const layout = [
+        [shuffledOptions[0], shuffledOptions[1]],
+        [shuffledOptions[2], shuffledOptions[3], shuffledOptions[4]],
+        [shuffledOptions[5], shuffledOptions[6]]
+    ];
+
+    layout.forEach(row => {
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'row';
+        row.forEach(option => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.textContent = option.name;
+            rowDiv.appendChild(div);
+
+            // Quando un'opzione viene cliccata, reindirizza alla pagina corrispondente
+            div.addEventListener('click', () => {
+                window.location.href = option.link;
+            });
+        });
+        answersContainer.appendChild(rowDiv);
+    });
+</script>
+
+</body>
+</html>
